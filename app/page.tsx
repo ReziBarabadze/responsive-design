@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const page = () => {
+const Page = () => {
   const mobile = useMediaQuery("(max-width:600px)");
   const data = [
     {
@@ -54,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
