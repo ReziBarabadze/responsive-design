@@ -1,95 +1,57 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import Card from "@/components/Card";
+import { Box } from "@mui/material";
+import React from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-export default function Home() {
+const page = () => {
+  const mobile = useMediaQuery("(max-width:600px)");
+  const data = [
+    {
+      color: "#e28625",
+      image: "images/icon-sedans.svg",
+      title: "Sedans",
+      description:
+        "Choose a sedan for it's affordability and excellent fuel economy. Ideal for cruising in the city or on your next road trip",
+    },
+    {
+      color: "#006971",
+      image: "images/icon-suvs.svg",
+      title: "SUVS",
+      description:
+        "Take an SUV for it's spacious interior, power, and versatility. Perfect for your next family vacation and off-road adventures",
+    },
+    {
+      color: "#004140",
+      image: "images/icon-luxury.svg",
+      title: "Luxury",
+      description:
+        "Cruise in the best car brands without the bloated prices. Enjoy the enhanced comfort of a luxury rental and arrive in style.",
+    },
+  ];
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: mobile ? "auto" : "98vh",
+        flexDirection: mobile ? "column" : "row",
+      }}
+    >
+      {data.map((card) => {
+        return (
+          <Card
+            key={card.title}
+            color={card.color}
+            image={card.image}
+            title={card.title}
+            description={card.description}
           />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        );
+      })}
+    </Box>
   );
-}
+};
+
+export default page;
